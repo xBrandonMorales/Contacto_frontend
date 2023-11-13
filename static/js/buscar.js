@@ -3,7 +3,7 @@ function searchByEmail() {
     const request = new XMLHttpRequest();
 
     // Hacer una solicitud GET al endpoint del backend para buscar por correo electrónico
-    request.open('GET', `https://8000-axelcarrill-herokubacke-whqiugtf5q7.ws-us106.gitpod.io/contactos/${emailInput}`);
+    request.open('GET', `https://heroku04backend-3da0f6c11293.herokuapp.com/contactos/${emailInput}`);
     request.send();
 
     request.onload = (e) => {
