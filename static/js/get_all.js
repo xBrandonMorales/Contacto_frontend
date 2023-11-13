@@ -1,6 +1,6 @@
 function getAll() {
     var request = new XMLHttpRequest();
-    request.open('GET', "https://heroku04backend-3da0f6c11293.herokuapp.com/contactos");
+    request.open('GET', "https://8000-axelcarrill-herokubacke-whqiugtf5q7.ws-us106.gitpod.io/contactos");
     request.send();
 
     request.onload = (e) => {

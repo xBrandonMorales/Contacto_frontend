@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const telefono = document.getElementById("telefono").value;
 
         try {
-            const response = await fetch("https://heroku04backend-3da0f6c11293.herokuapp.com/contactos", {
+            const response = await fetch("https://8000-axelcarrill-herokubacke-whqiugtf5q7.ws-us106.gitpod.io/contactos", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -20,14 +20,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (response.status === 200) {
                 const data = await response.json();
-                insertResultDiv.innerHTML = `<p>Contacto insertado: ${data.email}</p>`;
+                const message = `Contacto insertado: ${data.email}`;
+                alert(message);
                 // Limpiar los campos del formulario después de la inserción
                 document.getElementById("email").value = "";
                 document.getElementById("nombre").value = "";
                 document.getElementById("telefono").value = "";
             } else {
-                insertResultDiv.innerHTML = "<p>Error al insertar el contacto.</p>";
+                const errorMessage = "Error al insertar el contacto.";
+                alert(errorMessage);
             }
+            
         } catch (error) {
             console.error(error);
         }

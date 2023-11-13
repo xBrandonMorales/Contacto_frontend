@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const email = params.get("email");
 
     // Realiza una solicitud GET para obtener detalles del contacto con el correo electrónico proporcionado
-    fetch(`https://api-contactos-backend-0e75b19d44da.herokuapp.com/contactos/${encodeURIComponent(email)}`)
+    fetch(`https://8000-axelcarrill-herokubacke-whqiugtf5q7.ws-us106.gitpod.io/contactos/${encodeURIComponent(email)}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error(`Error al obtener detalles del contacto. Código de estado: ${response.status}`);
@@ -35,7 +35,7 @@ function borrarContacto() {
     const email = params.get("email");
 
     // Realiza una solicitud DELETE para borrar el contacto en el backend
-    fetch(`https://heroku04backend-3da0f6c11293.herokuapp.com/contactos/${encodeURIComponent(email)}`, {
+    fetch(`https://8000-axelcarrill-herokubacke-whqiugtf5q7.ws-us106.gitpod.io/contactos/${encodeURIComponent(email)}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
