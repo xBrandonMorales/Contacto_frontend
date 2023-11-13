@@ -1,23 +1,28 @@
 <!DOCTYPE html>
-<html lang="es">
-    <head>
-        <title>Buscar Contactos</title>
-        <script type="text/javascript" src="../static/js/get_one.js"></script>
-    </head>
-    <body>
-        <h1>Buscar contacto</h1>
-            <label for="email">Email</label>
-            <input type="email" id="email">
-            <button value="Buscar" onclick="getOne(document.getElementById('email').value)">Buscar</button>
-
-        <table border="1" id="table_contactos">
-            <thead id="thead_contactos">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Buscar Contacto</title>
+</head>
+<body>
+    <h1>Buscar Contacto</h1>
+    
+    <label for="searchEmail">Correo Electrónico:</label>
+    <input type="text" id="searchEmail" required><br><br>
+    <button onclick="searchByEmail()">Buscar</button>
+    <button onclick="window.location.href = '/';">Regresar</button>
+    
+    <table>
+        <thead>
+            <tr>
                 <th>Email</th>
                 <th>Nombre</th>
                 <th>Teléfono</th>
-            </thead>
-            <tbody id="tbody_contactos">
-            </tbody>
-        </table>
-    </body>
+            </tr>
+        </thead>
+        <tbody id="searchResult"></tbody>
+    </table>
+
+    <script src="../static/js/buscar.js"></script>
+</body>
 </html>

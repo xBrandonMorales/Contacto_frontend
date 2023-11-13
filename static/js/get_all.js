@@ -1,40 +1,66 @@
-function getAll(){
-    const URL = "http://localhost:8000/contactos";
-    //const URL = "ttps://shm-backend-105ae4e301e9.herokuapp.com/contactos";
-    var request = new XMLHttpRequest;
-    request.open('GET',URL);
+function getAll() {
+    var request = new XMLHttpRequest();
+    request.open('GET', "https://heroku04backend-3da0f6c11293.herokuapp.com/contactos");
     request.send();
 
     request.onload = (e) => {
         const response = request.responseText;
         const json = JSON.parse(response);
         console.log("response: " + response);
-        console.log("json: " + json);
+        console.log("json: " + JSON.stringify(json));
         console.log("status_code: " + request.status);
 
-        console.log("Email: " + json[0]["email"]);
-        console.log("Nombre: " + json[0]["nombre"]);
-        console.log("Telefono: " + json[0]["telefono"]);
-
         const tbody_contactos = document.getElementById("tbody_contactos");
-        for (var i = 0; i < Object.keys(json).length; i++) {
+
+        // Limpiar cualquier contenido previo en la tabla
+        tbody_contactos.innerHTML = "";
+
+        json.forEach((contact) => {
             var tr = document.createElement("tr");
             var td_email = document.createElement("td");
             var td_nombre = document.createElement("td");
             var td_telefono = document.createElement("td");
+            var td_options = document.createElement("td");
 
-            td_email.innerHTML = json[i]["email"];
-            td_nombre.innerHTML = json[i]["nombre"];
-            td_telefono.innerHTML = json[i]["telefono"];
+            td_email.innerHTML = contact["email"];
+            td_nombre.innerHTML = contact["nombre"];
+            td_telefono.innerHTML = contact["telefono"];
 
-            console.log("Email: " + json[i]["email"]);
+            // Crear botón "Ver" para cada registro
+            var viewButton = document.createElement("button");
+            viewButton.textContent = "Ver";
+            viewButton.addEventListener("click", function () {
+                // Redirige a la página "ver.html" con el correo electrónico como parámetro
+                window.location.href = `ver?email=${contact["email"]}`;
+            });
+
+            // Crear botón "Editar" para cada registro
+            var editButton = document.createElement("button");
+            editButton.textContent = "Editar";
+            editButton.addEventListener("click", function () {
+                // Redirige a la página "editar.html" con el correo electrónico como parámetro
+                window.location.href = `editar?email=${contact["email"]}`;
+            });
+
+            // Crear botón "Borrar" para cada registro
+            var deleteButton = document.createElement("button");
+            deleteButton.textContent = "Borrar";
+            deleteButton.addEventListener("click", function () {
+                // Redirige a la página "borrar.html" con el correo electrónico como parámetro
+                window.location.href = `borrar?email=${contact["email"]}`;
+            });
+
+            // Agregar los botones a la celda de opciones
+            td_options.appendChild(viewButton);
+            td_options.appendChild(editButton);
+            td_options.appendChild(deleteButton);
 
             tr.appendChild(td_email);
             tr.appendChild(td_nombre);
             tr.appendChild(td_telefono);
-            tbody_contactos.appendChild(tr);
-        }
-        
+            tr.appendChild(td_options);
 
+            tbody_contactos.appendChild(tr);
+        });
     };
-};
+}
